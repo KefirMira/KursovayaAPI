@@ -1,0 +1,15 @@
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\bin\Debug\net7.0\CinemaApiAdo.Services.deps.json
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\bin\Debug\net7.0\CinemaApiAdo.Services.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\bin\Debug\net7.0\CinemaApiAdo.Services.pdb
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\bin\Debug\net7.0\CinemaApiADO.Models.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\bin\Debug\net7.0\CinemaApiADO.Models.pdb
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.csproj.AssemblyReference.cache
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.AssemblyInfoInputs.cache
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.AssemblyInfo.cs
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.csproj.CopyComplete
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\refint\CinemaApiAdo.Services.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\CinemaApiAdo.Services.pdb
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiAdo.Services\obj\Debug\net7.0\ref\CinemaApiAdo.Services.dll

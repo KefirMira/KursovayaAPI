@@ -1,0 +1,12 @@
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\bin\Debug\net7.0\CinemaApiADO.Models.deps.json
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\bin\Debug\net7.0\CinemaApiADO.Models.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\bin\Debug\net7.0\CinemaApiADO.Models.pdb
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.csproj.AssemblyReference.cache
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.AssemblyInfoInputs.cache
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.AssemblyInfo.cs
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\refint\CinemaApiADO.Models.dll
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\CinemaApiADO.Models.pdb
+C:\Users\lenovo\RiderProjects\CinemaApiADO\CinemaApiADO.Models\obj\Debug\net7.0\ref\CinemaApiADO.Models.dll

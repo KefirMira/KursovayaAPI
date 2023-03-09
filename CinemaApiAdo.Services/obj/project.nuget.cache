@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qUKHscsUiIL+ABIAi5oCCOGEiIx/LiOQiFDTrV2irgMqd6ibY1GrOhkLOZSENbLiX/4ZQ7EbekKr++Drkz/r5g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lenovo\\RiderProjects\\CinemaApiADO\\CinemaApiAdo.Services\\CinemaApiAdo.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
