@@ -32,21 +32,30 @@ namespace CinemaApiADO.Controllers
         }
           
         [HttpPost("create")]
-        public void Create([FromBody] HallTypeBlank hallTypeBlank)
+        public IActionResult Create([FromBody] HallTypeBlank hallTypeBlank)
         {
-            _service.CreateHallType(hallTypeBlank);
+            if (_service.CreateHallType(hallTypeBlank))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int HallTypeId)
+        public IActionResult Delete(int HallTypeId)
         {
-            _service.DeleteHallType(HallTypeId);
+            if (_service.DeleteHallType(HallTypeId))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("update")]
-        public void Update(int HallTypeId, HallTypeBlank hallTypeBlank)
+        public IActionResult Update(int HallTypeId, HallTypeBlank hallTypeBlank)
         {
-            _service.UpdateHallType(HallTypeId,hallTypeBlank);
+            if (_service.UpdateHallType(HallTypeId, hallTypeBlank))
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

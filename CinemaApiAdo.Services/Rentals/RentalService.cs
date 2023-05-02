@@ -1,4 +1,5 @@
 ﻿using CinemaApiADO.Models.Films.Blank;
+using CinemaApiADO.Models.Films.Domain;
 using CinemaApiADO.Models.Halls.DB;
 using CinemaApiADO.Models.Halls.Domain;
 using CinemaApiADO.Models.HallsTypes.Blank;
@@ -16,10 +17,11 @@ public class RentalService:IRentalService
     {
         _repository = new RentalRepository();
     }
-    public void CreateRental(RentalBlank rental)
+    public void CreateRental(RentalDomain rental)
     {
-        RentalDB newrental = RentalDB.Convert(rental);
-        _repository.CreateRental(newrental);
+        //RentalDB newrental = RentalDB.Convert(rental);
+        //_repository.CreateRental(newrental);
+        _repository.CreateRental(rental);
     }
 
     public void DeleteRental(int rentalId)
@@ -33,7 +35,7 @@ public class RentalService:IRentalService
         List<RentalDomain> allinforental = new List<RentalDomain>();
         foreach (var item in allrental)
         {
-            FilmBlank film = _repository.GetFilm(item.Id);
+            FilmDomain film = _repository.GetFilm(item.Id);
             allinforental.Add(RentalDomain.Convert(item,film));
         }
         return allinforental;

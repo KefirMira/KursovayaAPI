@@ -33,24 +33,42 @@ public class ClientRepository:IClientRepository
         }
     }
 
-    public void UpdateClient(int companyId, ClientDB company)
+    public bool UpdateClient(int companyId, ClientDB company)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"update client set name = {company.Name} ," +
-                                                  $"surname = {company.Surname}, patronymic = {company.Patronymic}," +
-                                                  $"login = {company.Login}, password = {company.Password}," +
-                                                  $"telephone = {company.Telephone}, mail ={company.Mail}," +
-                                                  $"discount = {company.Discount} where id = {companyId}",_connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"update client set name = {company.Name} ," +
+                                                      $"surname = {company.Surname}, patronymic = {company.Patronymic}," +
+                                                      $"login = {company.Login}, password = {company.Password}," +
+                                                      $"telephone = {company.Telephone}, mail ={company.Mail}," +
+                                                      $"discount = {company.Discount} where id = {companyId}",
+                _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteClient(int companyId)
+    public bool DeleteClient(int companyId)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from client where id={companyId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"delete from client where id={companyId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+
     }
 
     public ClientDB GetClient(int companyId)

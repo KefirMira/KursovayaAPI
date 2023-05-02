@@ -5,7 +5,7 @@ namespace CinemaApiAdo.Services.Halls;
 
 public interface IHallService
 {
-    void CreateHall(HallBlank hall);
-    void DeleteHall(int hallId);
+    bool CreateHall(HallBlank hall);
+    bool DeleteHall(int hallId);
     IEnumerable<HallDomain> GetAllHall();
 }

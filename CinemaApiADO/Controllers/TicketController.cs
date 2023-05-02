@@ -44,15 +44,21 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("create")]
-        public void Create([FromBody] TicketBlank newticket)
+        public IActionResult Create([FromBody] TicketDomain newticket)
         {
-            _ticketService.CreateTicket(newticket);
+            if(_ticketService.CreateTicket(newticket))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int ticketId)
+        public IActionResult Delete(int ticketId)
         {
-            _ticketService.DeleteTicket(ticketId);
+            if (_ticketService.DeleteTicket(ticketId))
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

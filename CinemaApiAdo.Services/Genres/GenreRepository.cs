@@ -14,29 +14,53 @@ public class GenreRepository: IGenreRepositore
         _connection = new NpgsqlConnection(connectionString);
     }
     
-    public void CreateGenre(GenreDB genre)
+    public bool CreateGenre(GenreDB genre)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"insert into genre(name) values ('{genre.Name}')",
-            _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"insert into genre(name) values ('{genre.Name}')",
+                _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateGenre(GenreDB genre)
+    public bool UpdateGenre(GenreDB genre)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"update genre set name = {genre.Name} where id={genre.Id}");
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"update genre set name = {genre.Name} where id={genre.Id}");
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteGenre(int genreId)
+    public bool DeleteGenre(int genreId)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from genre where id={genreId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"delete from genre where id={genreId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public GenreDB GetGenre(int genreId)

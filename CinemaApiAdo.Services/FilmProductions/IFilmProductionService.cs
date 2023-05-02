@@ -5,8 +5,8 @@ namespace CinemaApiAdo.Services.FilmProductions;
 
 public interface IFilmProductionService
 {
-    void CreateFilmProduction(FilmProductionBlank filmProductionBlank);
-    void UpdateFilmProduction(int filmProductionId,FilmProductionBlank filmProduction);
-    void DeleteFilmProduction(int filmProductionId);
+    bool CreateFilmProduction(FilmProductionBlank filmProductionBlank);
+    bool UpdateFilmProduction(int filmProductionId,FilmProductionBlank filmProduction);
+    bool DeleteFilmProduction(int filmProductionId);
     IEnumerable<FilmProductionDomain> GetAllFilmProduction();
 }

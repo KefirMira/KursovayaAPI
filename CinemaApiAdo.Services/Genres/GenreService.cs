@@ -14,21 +14,45 @@ public class GenreService: IGenreService
         _repository = new GenreRepository();
     }
     
-    public void CreateGenre(GenreBlank genre)
+    public bool CreateGenre(GenreBlank genre)
     {
-        GenreDB newGenre = GenreDB.Convert(genre);
-        _repository.CreateGenre(newGenre);
+        try
+        {
+            GenreDB newGenre = GenreDB.Convert(genre);
+            _repository.CreateGenre(newGenre);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateGenre(int genreId, GenreBlank genre)
+    public bool UpdateGenre(int genreId, GenreBlank genre)
     {
-        GenreDB updateGenre = GenreDB.Convert(genreId,genre);
-        _repository.UpdateGenre(updateGenre);
+        try
+        {
+            GenreDB updateGenre = GenreDB.Convert(genreId, genre);
+            _repository.UpdateGenre(updateGenre);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteGenre(int genreId)
+    public bool DeleteGenre(int genreId)
     {
-        _repository.DeleteGenre(genreId);
+        try
+        {
+            _repository.DeleteGenre(genreId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public GenreDomain GetGenre(int genreId)

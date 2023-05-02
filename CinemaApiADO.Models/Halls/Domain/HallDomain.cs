@@ -1,5 +1,6 @@
 ﻿using CinemaApiADO.Models.Halls.DB;
 using CinemaApiADO.Models.HallsTypes.Blank;
+using CinemaApiADO.Models.HallsTypes.Domain;
 
 namespace CinemaApiADO.Models.Halls.Domain;
 
@@ -9,7 +10,7 @@ public class HallDomain
     public string Name { get; set; }
     public int NumberOfSeats { get; set; }
     public int NumberOfRows { get; set; }
-    public HallTypeBlank HallType { get; set; }
+    public HallTypeDomain HallType { get; set; }
     public static HallDomain Convert(HallDB hallDb)
     {
         return new HallDomain()
@@ -20,7 +21,7 @@ public class HallDomain
             NumberOfRows = hallDb.NumberOfRows
         };
     }
-    public static HallDomain Convert(HallDB hallDb, HallTypeBlank halltypeBlanks)
+    public static HallDomain Convert(HallDB hallDb, HallTypeDomain halltypeBlanks)
     {
         return new HallDomain()
         {

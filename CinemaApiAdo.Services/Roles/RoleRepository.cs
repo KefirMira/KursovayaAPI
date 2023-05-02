@@ -30,28 +30,52 @@ public class RoleRepository:IRoleRepository
         return halltypeDbs;
     }
 
-    public void CreateRole(RoleDB roleDb)
+    public bool CreateRole(RoleDB roleDb)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"insert into role(name) values ('{roleDb.Name}')",
-            _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"insert into role(name) values ('{roleDb.Name}')",
+                _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateRole(RoleDB roleDb)
+    public bool UpdateRole(RoleDB roleDb)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"update role set name = {roleDb.Name} where id={roleDb.Id}");
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"update role set name = {roleDb.Name} where id={roleDb.Id}");
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteRole(int roleDb)
+    public bool DeleteRole(int roleDb)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from role where id={roleDb}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"delete from role where id={roleDb}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

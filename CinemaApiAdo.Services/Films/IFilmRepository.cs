@@ -6,11 +6,11 @@ namespace CinemaApiAdo.Services.Films;
 
 public interface IFilmRepository
 {
-    void CreateFilm(FilmDB film);
-    void UpdateFilm(FilmDB film);
-    void DeleteFilm(int filmId);
+    bool CreateFilm(FilmDB film);
+    bool UpdateFilm(FilmDB film);
+    bool DeleteFilm(int filmId);
     FilmDB GetFilm(int filmId);
     IEnumerable<FilmDB> GetAllFilm();
-    void CreateGenresFilm(GenresFilms genresFilms);
-    void CreateCasteFilm(Caste caste);
+    bool CreateGenresFilm(GenresFilms genresFilms);
+    bool CreateCasteFilm(Caste caste);
 }

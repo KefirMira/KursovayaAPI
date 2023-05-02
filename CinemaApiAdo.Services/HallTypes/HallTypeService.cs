@@ -19,20 +19,44 @@ public class HallTypeService : IHallTypeService
         return HallTypeDomain.Convert(allhalltypes);
     }
 
-    public void CreateHallType(HallTypeBlank hallTypeBlank)
+    public bool CreateHallType(HallTypeBlank hallTypeBlank)
     {
-        HallTypeDB newHallType = HallTypeDB.Convert(hallTypeBlank);
-        _repository.CreateHallType(newHallType);
+        try
+        {
+            HallTypeDB newHallType = HallTypeDB.Convert(hallTypeBlank);
+            _repository.CreateHallType(newHallType);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateHallType(int halltypeId, HallTypeBlank hallTypeBlank)
+    public bool UpdateHallType(int halltypeId, HallTypeBlank hallTypeBlank)
     {
-        HallTypeDB updateHallType = HallTypeDB.Convert(halltypeId,hallTypeBlank);
-        _repository.UpdateHallType(updateHallType);
+        try
+        {
+            HallTypeDB updateHallType = HallTypeDB.Convert(halltypeId, hallTypeBlank);
+            _repository.UpdateHallType(updateHallType);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteHallType(int halltypeId)
+    public bool DeleteHallType(int halltypeId)
     {
-        _repository.DeleteHallType(halltypeId);
+        try
+        {
+            _repository.DeleteHallType(halltypeId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

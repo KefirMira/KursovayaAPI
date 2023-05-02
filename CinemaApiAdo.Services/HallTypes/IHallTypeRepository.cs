@@ -5,7 +5,7 @@ namespace CinemaApiAdo.Services.HallTypes;
 public interface IHallTypeRepository
 {
     IEnumerable<HallTypeDB> GetAllHallType();
-    void CreateHallType(HallTypeDB hallTypeDb);
-    void UpdateHallType(HallTypeDB hallTypeDb);
-    void DeleteHallType(int hallTypeId);
+    bool CreateHallType(HallTypeDB hallTypeDb);
+    bool UpdateHallType(HallTypeDB hallTypeDb);
+    bool DeleteHallType(int hallTypeId);
 }

@@ -5,9 +5,9 @@ namespace CinemaApiAdo.Services.Companies;
 
 public interface ICompanyService
 {
-    void CreateCompany(CompanyBlank companyBlank);
-    void UpdateCompany(int companyId,CompanyBlank company);
-    void DeleteCompany(int companyId);
+    bool CreateCompany(CompanyBlank companyBlank);
+    bool UpdateCompany(int companyId,CompanyBlank company);
+    bool DeleteCompany(int companyId);
     CompanyDomain GetCompany(int companyId);
     IEnumerable<CompanyDomain> GetAllCompanies();
 }

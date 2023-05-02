@@ -6,9 +6,9 @@ namespace CinemaApiAdo.Services.Genres;
 
 public interface IGenreRepositore
 {
-    void CreateGenre(GenreDB genre);
-    void UpdateGenre(GenreDB genre);
-    void DeleteGenre(int genreId);
+    bool CreateGenre(GenreDB genre);
+    bool UpdateGenre(GenreDB genre);
+    bool DeleteGenre(int genreId);
     GenreDB GetGenre(int genreId);
     IEnumerable<GenreDB> GetAllGenres();
 }

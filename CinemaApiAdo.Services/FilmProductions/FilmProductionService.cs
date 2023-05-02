@@ -15,21 +15,45 @@ public class FilmProductionService:IFilmProductionService
         _repository = new FilmProductionRepository();
     }
 
-    public void CreateFilmProduction(FilmProductionBlank filmProductionBlank)
+    public bool CreateFilmProduction(FilmProductionBlank filmProductionBlank)
     {
-        FilmProductionDB newCompany = FilmProductionDB.Convert(filmProductionBlank);
-        _repository.CreateFilmProduction(newCompany);
+        try
+        {
+            FilmProductionDB newCompany = FilmProductionDB.Convert(filmProductionBlank);
+            _repository.CreateFilmProduction(newCompany);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateFilmProduction(int filmProductionId, FilmProductionBlank filmProduction)
+    public bool UpdateFilmProduction(int filmProductionId, FilmProductionBlank filmProduction)
     {
-        FilmProductionDB updateCompany = FilmProductionDB.Convert(filmProduction);
-        _repository.UpdateFilmProduction(filmProductionId,updateCompany);
+        try
+        {
+            FilmProductionDB updateCompany = FilmProductionDB.Convert(filmProduction);
+            _repository.UpdateFilmProduction(filmProductionId, updateCompany);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteFilmProduction(int filmProductionId)
+    public bool DeleteFilmProduction(int filmProductionId)
     {
-        _repository.DeleteFilmProduction(filmProductionId);
+        try
+        {
+            _repository.DeleteFilmProduction(filmProductionId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public IEnumerable<FilmProductionDomain> GetAllFilmProduction()

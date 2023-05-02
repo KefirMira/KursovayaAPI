@@ -1,4 +1,5 @@
-﻿using CinemaApiADO.Models.Castes;
+﻿
+using CinemaApiADO.Models.Castes;
 using CinemaApiADO.Models.Companies.Blank;
 using CinemaApiADO.Models.Films.Blank;
 using CinemaApiADO.Models.Films.DB;
@@ -19,38 +20,62 @@ public class FilmRepository: IFilmRepository
         _connection = new NpgsqlConnection(connectionString);
     }
     
-    public void CreateFilm(FilmDB film)
+    public bool CreateFilm(FilmDB film)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand(
-            $"insert into film(name, age_restriction, country, duration, poster," +
-            $"release, pushkins_map, short_description," +
-            $"trailer_link) values ('{film.Name}', '{film.AgeRestriction}', '{film.Country}'" +
-            $", '{film.Duration}', '{film.Poster}', '{film.Release}', '{film.ShortDescription}'" +
-            $", '{film.TrailerLink}')", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand(
+                $"insert into film(name, age_restriction, country, duration, poster," +
+                $"release, pushkins_map, short_description," +
+                $"trailer_link) values ('{film.Name}', '{film.AgeRestriction}', '{film.Country}'" +
+                $", '{film.Duration}', '{film.Poster}', '{film.Release}', '{film.ShortDescription}'" +
+                $", '{film.TrailerLink}')", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateFilm(FilmDB film)
+    public bool UpdateFilm(FilmDB film)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand(
-            $"update film set (name, age_restriction, country, duration, poster," +
-            $"release, pushkins_map, short_description," +
-            $"trailer_link) values ('{film.Name}', '{film.AgeRestriction}', '{film.Country}'" +
-            $", '{film.Duration}', '{film.Poster}', '{film.Release}', '{film.ShortDescription}'" +
-            $", '{film.TrailerLink}') where id={film.Id}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand(
+                $"update film set (name, age_restriction, country, duration, poster," +
+                $"release, pushkins_map, short_description," +
+                $"trailer_link) values ('{film.Name}', '{film.AgeRestriction}', '{film.Country}'" +
+                $", '{film.Duration}', '{film.Poster}', '{film.Release}', '{film.ShortDescription}'" +
+                $", '{film.TrailerLink}') where id={film.Id}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteFilm(int filmId)
+    public bool DeleteFilm(int filmId)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from film where id={filmId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"delete from film where id={filmId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public FilmDB GetFilm(int filmId)
@@ -148,22 +173,41 @@ public class FilmRepository: IFilmRepository
         return allfilms;
     }
 
-    public void CreateGenresFilm(GenresFilms genresFilms)
+    public bool CreateGenresFilm(GenresFilms genresFilms)
     {
-        _connection.Open();
-        NpgsqlCommand command =
-            new NpgsqlCommand(
-                $"insert into genres_film( idgenre, idfilm) values ({genresFilms.genreId},{genresFilms.filmId})",
-                _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand(
+                    $"insert into genres_film( idgenre, idfilm) values ({genresFilms.genreId},{genresFilms.filmId})",
+                    _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void CreateCasteFilm(Caste caste)
+    public bool CreateCasteFilm(Caste caste)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"insert into caste(idfilm, idfilm_production, idrole) values ({caste.filmId},{caste.filmprodId},{caste.roleId})", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand(
+                    $"insert into caste(idfilm, idfilm_production, idrole) values ({caste.filmId},{caste.filmprodId},{caste.roleId})",
+                    _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

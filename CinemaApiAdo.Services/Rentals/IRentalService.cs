@@ -6,7 +6,7 @@ namespace CinemaApiAdo.Services.Rentals;
 
 public interface IRentalService
 {
-    void CreateRental(RentalBlank rental);
+    void CreateRental(RentalDomain rental);
     void DeleteRental(int rentalId);
     IEnumerable<RentalDomain> GetAllRental();
 }

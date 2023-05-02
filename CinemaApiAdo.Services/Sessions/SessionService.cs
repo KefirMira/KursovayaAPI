@@ -1,5 +1,6 @@
 ﻿using CinemaApiADO.Models.Films.Blank;
 using CinemaApiADO.Models.Halls.Blank;
+using CinemaApiADO.Models.Halls.Domain;
 using CinemaApiADO.Models.Rentals.Blank;
 using CinemaApiADO.Models.Rentals.DB;
 using CinemaApiADO.Models.Rentals.Domain;
@@ -7,6 +8,7 @@ using CinemaApiADO.Models.Sessions.Blank;
 using CinemaApiADO.Models.Sessions.DB;
 using CinemaApiADO.Models.Sessions.Domain;
 using CinemaApiADO.Models.SessionsTypes.Blank;
+using CinemaApiADO.Models.SessionsTypes.Domain;
 
 namespace CinemaApiAdo.Services.Sessions;
 
@@ -18,15 +20,31 @@ public class SessionService:ISessionService
     {
         _repository = new SessionRepository();
     }
-    public void CreateSession(SessionBlank session)
+    public bool CreateSession(SessionBlank session)
     {
-        SessionDB newsession = SessionDB.Convert(session);
-        _repository.CreateSession(newsession);
+        try
+        {
+            SessionDB newsession = SessionDB.Convert(session);
+            _repository.CreateSession(newsession);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteSession(int sessionId)
+    public bool DeleteSession(int sessionId)
     {
-        _repository.DeleteSession(sessionId);
+        try
+        {
+            _repository.DeleteSession(sessionId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public IEnumerable<SessionDomain> GetAllSession()
@@ -35,9 +53,9 @@ public class SessionService:ISessionService
         List<SessionDomain> allinforental = new List<SessionDomain>();
         foreach (var item in allrental)
         {
-            HallBlank hall = _repository.GetHall(item.Id);
-            SessionTypeBlank sessiontype = _repository.GetTypeSession(item.Id);
-            RentalBlank rental = _repository.GetRental(item.Id);
+            HallDomain hall = _repository.GetHall(item.Id);
+            SessionTypeDomain sessiontype = _repository.GetTypeSession(item.Id);
+            RentalDomain rental = _repository.GetRental(item.Id);
             allinforental.Add(SessionDomain.Convert(item,hall,rental,sessiontype));
         }
         return allinforental;

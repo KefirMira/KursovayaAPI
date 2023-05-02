@@ -7,6 +7,7 @@ using CinemaApiADO.Models.Halls.Blank;
 using CinemaApiADO.Models.Halls.DB;
 using CinemaApiADO.Models.Halls.Domain;
 using CinemaApiADO.Models.HallsTypes.Blank;
+using CinemaApiADO.Models.HallsTypes.Domain;
 
 namespace CinemaApiAdo.Services.Halls;
 
@@ -18,15 +19,31 @@ public class HallService:IHallService
     {
         _repository = new HallRepository();
     }
-    public void CreateHall(HallBlank hall)
+    public bool CreateHall(HallBlank hall)
     {
-        HallDB newhall = HallDB.Convert(hall);
-        _repository.CreateHall(newhall);
+        try
+        {
+            HallDB newhall = HallDB.Convert(hall);
+            _repository.CreateHall(newhall);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteHall(int hallId)
+    public bool DeleteHall(int hallId)
     {
-        _repository.DeleteHall(hallId);
+        try
+        {
+            _repository.DeleteHall(hallId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public IEnumerable<HallDomain> GetAllHall()
@@ -35,7 +52,7 @@ public class HallService:IHallService
         List<HallDomain> allinfohall = new List<HallDomain>();
         foreach (var item in allhall)
         {
-            HallTypeBlank halltypefilm = _repository.GetHallTypeFilm(item.Id);
+            HallTypeDomain halltypefilm = _repository.GetHallTypeFilm(item.Id);
             allinfohall.Add(HallDomain.Convert(item,halltypefilm));
         }
         return allinfohall;

@@ -18,20 +18,45 @@ public class RoleService:IRoleService
         return RoleDomain.Convert(allhalltypes);
     }
 
-    public void CreateRole(RoleBlank roleBlank)
+    public bool CreateRole(RoleBlank roleBlank)
     {
-        RoleDB newrole = RoleDB.Convert(roleBlank);
-        _repository.CreateRole(newrole);
+        try
+        {
+            RoleDB newrole = RoleDB.Convert(roleBlank);
+            _repository.CreateRole(newrole);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateRole(int roleId, RoleBlank roleBlank)
+    public bool UpdateRole(int roleId, RoleBlank roleBlank)
     {
-        RoleDB updaterole = RoleDB.Convert(roleId,roleBlank);
-        _repository.UpdateRole(updaterole);
+        try
+        {
+ RoleDB updaterole = RoleDB.Convert(roleId,roleBlank);
+                 _repository.UpdateRole(updaterole);
+                 return true;
+        }
+        catch
+        {
+            return false;
+        }
+       
     }
 
-    public void DeleteRole(int roleId)
+    public bool DeleteRole(int roleId)
     {
-        _repository.DeleteRole(roleId);
+        try
+        {
+            _repository.DeleteRole(roleId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

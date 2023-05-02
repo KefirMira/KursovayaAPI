@@ -5,7 +5,7 @@ namespace CinemaApiAdo.Services.Sessions;
 
 public interface ISessionService
 {
-    void CreateSession(SessionBlank session);
-    void DeleteSession(int sessionId);
+    bool CreateSession(SessionBlank session);
+    bool DeleteSession(int sessionId);
     IEnumerable<SessionDomain> GetAllSession();
 }

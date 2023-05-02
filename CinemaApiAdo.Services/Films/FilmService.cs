@@ -17,21 +17,45 @@ public class FilmService: IFilmService
         _repository = new FilmRepository();
     }
     
-    public void CreateFilm(FilmBlank film)
+    public bool CreateFilm(FilmBlank film)
     {
-        FilmDB newfilm = FilmDB.Convert(film);
-        _repository.CreateFilm(newfilm);
+        try
+        {
+            FilmDB newfilm = FilmDB.Convert(film);
+            _repository.CreateFilm(newfilm);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateFilm(int filmId, FilmBlank film)
+    public bool UpdateFilm(int filmId, FilmBlank film)
     {
-        FilmDB upfilm = FilmDB.Convert(filmId,film);
-        _repository.UpdateFilm(upfilm);
+        try
+        {
+            FilmDB upfilm = FilmDB.Convert(filmId, film);
+            _repository.UpdateFilm(upfilm);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteFilm(int filmId)
+    public bool DeleteFilm(int filmId)
     {
-        _repository.DeleteFilm(filmId);
+        try
+        {
+            _repository.DeleteFilm(filmId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public FilmDomain GetFilm(int filmId)
@@ -60,13 +84,29 @@ public class FilmService: IFilmService
         return allinfofilm;
     }
 
-    public void CreateGenresFilm(GenresFilms genresFilms)
+    public bool CreateGenresFilm(GenresFilms genresFilms)
     {
-        _repository.CreateGenresFilm(genresFilms);
+        try
+        {
+            _repository.CreateGenresFilm(genresFilms);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void CreateCasteFilm(Caste caste)
+    public bool CreateCasteFilm(Caste caste)
     {
-        _repository.CreateCasteFilm(caste);
+        try
+        {
+            _repository.CreateCasteFilm(caste);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }

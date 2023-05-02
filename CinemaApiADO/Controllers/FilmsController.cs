@@ -43,31 +43,50 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("create")]
-        public void Create([FromBody] FilmBlank newfilm)
+        public IActionResult Create([FromBody] FilmBlank newfilm)
         {
-            _filmService.CreateFilm(newfilm);
+            if (_filmService.CreateFilm(newfilm))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int filmId)
+        public IActionResult Delete(int filmId)
         {
-            _filmService.DeleteFilm(filmId);
+            if (_filmService.DeleteFilm(filmId))
+                return Ok();
+            else
+                return NotFound();
+            
         }
 
         [HttpPost("update")]
-        public void Update(int filmId, FilmBlank film)
+        public IActionResult Update(int filmId, FilmBlank film)
         {
-            _filmService.UpdateFilm(filmId,film);
+            if (_filmService.UpdateFilm(filmId,film))
+                return Ok();
+            else
+                return NotFound();
+            
         }
         [HttpPost("creategenresfilm")]
-        public void CreateGenresFilm([FromBody] GenresFilms genresFilms)
+        public IActionResult CreateGenresFilm([FromBody] GenresFilms genresFilms)
         {
-            _filmService.CreateGenresFilm(genresFilms);
+            if (_filmService.CreateGenresFilm(genresFilms))
+                return Ok();
+            else
+                return NotFound();
+            
         }
         [HttpPost("createcastefilm")]
-        public void CreateCasteFilm([FromBody] Caste caste)
+        public IActionResult CreateCasteFilm([FromBody] Caste caste)
         {
-            _filmService.CreateCasteFilm(caste);
+            if (_filmService.CreateCasteFilm(caste))
+                return Ok();
+            else
+                return NotFound();
+            
         }
     }
 }

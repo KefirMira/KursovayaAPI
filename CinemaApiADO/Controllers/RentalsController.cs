@@ -35,7 +35,7 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("create")]
-        public void Create([FromBody] RentalBlank newrental)
+        public void Create([FromBody] RentalDomain newrental)
         {
             _rentalService.CreateRental(newrental);
         }

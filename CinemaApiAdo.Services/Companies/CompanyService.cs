@@ -14,21 +14,45 @@ public class CompanyService: ICompanyService
         _repository = new CompanyRepository();
     }
     
-    public void CreateCompany(CompanyBlank companyBlank)
+    public bool CreateCompany(CompanyBlank companyBlank)
     {
-        CompanyDB newCompany = CompanyDB.Convert(companyBlank);
-        _repository.CreateCompany(newCompany);
+        try
+        {
+            CompanyDB newCompany = CompanyDB.Convert(companyBlank);
+            _repository.CreateCompany(newCompany);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateCompany(int companyId, CompanyBlank company)
+    public bool UpdateCompany(int companyId, CompanyBlank company)
     {
-        CompanyDB updateCompany = CompanyDB.Convert(company);
-        _repository.UpdateCompany(companyId,updateCompany);
+        try
+        {CompanyDB updateCompany = CompanyDB.Convert(company);
+                 _repository.UpdateCompany(companyId,updateCompany);
+                 return true;
+        }
+        catch
+        {
+            return false;
+        }
+        
     }
 
-    public void DeleteCompany(int companyId)
+    public bool DeleteCompany(int companyId)
     {
-        _repository.DeleteCompany(companyId);
+        try
+        {
+            _repository.DeleteCompany(companyId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public CompanyDomain GetCompany(int companyId)

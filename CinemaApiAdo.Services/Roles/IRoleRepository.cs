@@ -5,7 +5,7 @@ namespace CinemaApiAdo.Services.Roles;
 public interface IRoleRepository
 {
     IEnumerable<RoleDB> GetAllRole();
-    void CreateRole(RoleDB roleDb);
-    void UpdateRole(RoleDB roleDb);
-    void DeleteRole(int roleDb);
+    bool CreateRole(RoleDB roleDb);
+    bool UpdateRole(RoleDB roleDb);
+    bool DeleteRole(int roleDb);
 }

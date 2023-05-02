@@ -27,15 +27,31 @@ public class ClientService: IClientService
         }
     }
 
-    public void UpdateClient(int companyId, ClientBlank company)
+    public bool UpdateClient(int companyId, ClientBlank company)
     {
-        ClientDB update = ClientDB.Convert(company);
-        _repository.UpdateClient(companyId,update);
+        try
+        {
+            ClientDB update = ClientDB.Convert(company);
+            _repository.UpdateClient(companyId, update);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteClient(int companyId)
+    public bool DeleteClient(int companyId)
     {
-        _repository.DeleteClient(companyId);
+        try
+        {
+            _repository.DeleteClient(companyId);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public ClientDomain GetClient(int companyId)

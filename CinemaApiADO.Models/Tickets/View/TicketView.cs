@@ -1,6 +1,9 @@
 ﻿using CinemaApiADO.Models.Cinemas.Blank;
+using CinemaApiADO.Models.Cinemas.Domain;
 using CinemaApiADO.Models.Clients.Blank;
+using CinemaApiADO.Models.Clients.Domain;
 using CinemaApiADO.Models.PaymentsMethods.Blank;
+using CinemaApiADO.Models.PaymentsMethods.Domain;
 using CinemaApiADO.Models.Sessions.Blank;
 using CinemaApiADO.Models.Sessions.Domain;
 using CinemaApiADO.Models.Ticket.Domain;
@@ -12,11 +15,12 @@ public class TicketView
     public int Id { get; set; }
     public int Place { get; set; }
     public int Row { get; set; }
-    public SessionBlank Session { get; set; }
-    public PaymentsMethodsBlank PaymentsMethod { get; set; }
-    public CinemaBlank Cinema { get; set; }
-    public ClientBlank Client { get; set; }
-    public ClientBlank Cashier { get; set; }
+    private DateTime DateOfTicket { get; set; }
+    public SessionDomain Session { get; set; }
+    public PaymentsMethodsDomain PaymentsMethod { get; set; }
+    public CinemaDomain Cinema { get; set; }
+    public ClientDomain Client { get; set; }
+    public ClientDomain Cashier { get; set; }
     public static TicketView Convert(TicketDomain ticketDb)
     {
         return new TicketView()
@@ -28,7 +32,8 @@ public class TicketView
             Cashier = ticketDb.Cashier,
             Cinema = ticketDb.Cinema,
             PaymentsMethod = ticketDb.PaymentsMethod,
-            Client = ticketDb.Client
+            Client = ticketDb.Client,
+            DateOfTicket = ticketDb.DateOfTicket
         };
     }
 

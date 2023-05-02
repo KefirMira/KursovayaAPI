@@ -8,11 +8,11 @@ namespace CinemaApiAdo.Services.Films;
 
 public interface IFilmService
 {
-    void CreateFilm(FilmBlank film);
-    void UpdateFilm(int filmId,FilmBlank film);
-    void DeleteFilm(int filmId);
+    bool CreateFilm(FilmBlank film);
+    bool UpdateFilm(int filmId,FilmBlank film);
+    bool DeleteFilm(int filmId);
     FilmDomain GetFilm(int filmId);
     IEnumerable<FilmDomain> GetAllFilm();
-    void CreateGenresFilm(GenresFilms genresFilms);
-    void CreateCasteFilm(Caste caste);
+    bool CreateGenresFilm(GenresFilms genresFilms);
+    bool CreateCasteFilm(Caste caste);
 }

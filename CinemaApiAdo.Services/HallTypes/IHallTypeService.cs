@@ -6,7 +6,7 @@ namespace CinemaApiAdo.Services.HallTypes;
 public interface IHallTypeService
 {
     IEnumerable<HallTypeDomain> GetAllHallType();
-    void CreateHallType(HallTypeBlank hallTypeBlank);
-    void UpdateHallType(int halltypeId,HallTypeBlank hallTypeBlank);
-    void DeleteHallType(int halltypeId);
+    bool CreateHallType(HallTypeBlank hallTypeBlank);
+    bool UpdateHallType(int halltypeId,HallTypeBlank hallTypeBlank);
+    bool DeleteHallType(int halltypeId);
 }

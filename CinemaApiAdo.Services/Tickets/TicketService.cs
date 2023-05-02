@@ -1,10 +1,14 @@
 ﻿using CinemaApiADO.Models.Cinemas.Blank;
+using CinemaApiADO.Models.Cinemas.Domain;
 using CinemaApiADO.Models.Clients.Blank;
+using CinemaApiADO.Models.Clients.Domain;
 using CinemaApiADO.Models.Films.Blank;
 using CinemaApiADO.Models.PaymentsMethods.Blank;
+using CinemaApiADO.Models.PaymentsMethods.Domain;
 using CinemaApiADO.Models.Rentals.DB;
 using CinemaApiADO.Models.Rentals.Domain;
 using CinemaApiADO.Models.Sessions.Blank;
+using CinemaApiADO.Models.Sessions.Domain;
 using CinemaApiADO.Models.Ticket.Blank;
 using CinemaApiADO.Models.Ticket.DB;
 using CinemaApiADO.Models.Ticket.Domain;
@@ -19,15 +23,31 @@ public class TicketService:ITicketService
     {
         _repository = new TicketRepository();
     }
-    public void CreateTicket(TicketBlank ticket)
+    public bool CreateTicket(TicketDomain ticket)
     {
-        TicketDB newticket = TicketDB.Convert(ticket);
-        _repository.CreateTicket(newticket);
+        try
+        {
+            //TicketDB newticket = TicketDB.Convert(ticket);
+            _repository.CreateTicket(ticket);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteTicket(int ticketId)
+    public bool DeleteTicket(int ticketId)
     {
+        try
+        {
         _repository.DeleteTicket(ticketId);
+        return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public IEnumerable<TicketDomain> GetAllTicket()
@@ -36,11 +56,11 @@ public class TicketService:ITicketService
         List<TicketDomain> allinfoticket = new List<TicketDomain>();
         foreach (var item in allticket)
         {
-            CinemaBlank cinema = _repository.GetCinema(item.Id);
-            PaymentsMethodsBlank payments = _repository.GetPaymethod(item.Id);
-            SessionBlank session = _repository.GetSession(item.Id);
-            ClientBlank cashier = _repository.GetCashier(item.Id);
-            ClientBlank client = _repository.GetClient(item.Id);
+            CinemaDomain cinema = _repository.GetCinema(item.Id);
+            PaymentsMethodsDomain payments = _repository.GetPaymethod(item.Id);
+            SessionDomain session = _repository.GetSession(item.Id);
+            ClientDomain cashier = _repository.GetCashier(item.Id);
+            ClientDomain client = _repository.GetClient(item.Id);
             allinfoticket.Add(TicketDomain.Convert(item, session,payments,cinema,client,cashier));
         }
         return allinfoticket;
@@ -52,11 +72,11 @@ public class TicketService:ITicketService
         List<TicketDomain> allinfoticket = new List<TicketDomain>();
         foreach (var item in allticket)
         {
-            CinemaBlank cinema = _repository.GetCinema(item.Id);
-            PaymentsMethodsBlank payments = _repository.GetPaymethod(item.Id);
-            SessionBlank session = _repository.GetSession(item.Id);
-            ClientBlank cashier = _repository.GetCashier(item.Id);
-            ClientBlank client = _repository.GetClient(item.Id);
+            CinemaDomain cinema = _repository.GetCinema(item.Id);
+            PaymentsMethodsDomain payments = _repository.GetPaymethod(item.Id);
+            SessionDomain session = _repository.GetSession(item.Id);
+            ClientDomain cashier = _repository.GetCashier(item.Id);
+            ClientDomain client = _repository.GetClient(item.Id);
             allinfoticket.Add(TicketDomain.Convert(item, session,payments,cinema,client,cashier));
         }
         return allinfoticket;

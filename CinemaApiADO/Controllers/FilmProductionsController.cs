@@ -30,21 +30,32 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("create")]
-        public void Create([FromBody] FilmProductionBlank companyBlank)
+        public IActionResult Create([FromBody] FilmProductionBlank companyBlank)
         {
-            _service.CreateFilmProduction(companyBlank);
+            if (_service.CreateFilmProduction(companyBlank))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int companyId)
+        public IActionResult Delete(int companyId)
         {
-            _service.DeleteFilmProduction(companyId);
+            if (_service.DeleteFilmProduction(companyId))
+                return Ok();
+            else
+                return NotFound();
+            
         }
 
         [HttpPost("update")]
-        public void Update(int companyId, FilmProductionBlank companyBlank)
+        public IActionResult Update(int companyId, FilmProductionBlank companyBlank)
         {
-            _service.UpdateFilmProduction(companyId,companyBlank);
+            if (_service.UpdateFilmProduction(companyId,companyBlank))
+                return Ok();
+            else
+                return NotFound();
+            
         }
     }
 }

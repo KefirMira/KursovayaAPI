@@ -36,15 +36,21 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("create")]
-        public void Create([FromBody] SessionBlank newsession)
+        public IActionResult Create([FromBody] SessionBlank newsession)
         {
-            _sessionService.CreateSession(newsession);
+            if (_sessionService.CreateSession(newsession))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int sessionId)
+        public IActionResult Delete(int sessionId)
         {
-            _sessionService.DeleteSession(sessionId);
+            if (_sessionService.DeleteSession(sessionId))
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

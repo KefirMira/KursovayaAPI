@@ -39,21 +39,32 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("create")]
-        public void Create([FromBody] GenreBlank genreBlank)
+        public IActionResult Create([FromBody] GenreBlank genreBlank)
         {
-            _genreService.CreateGenre(genreBlank);
+            if (_genreService.CreateGenre(genreBlank))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int genreId)
+        public IActionResult Delete(int genreId)
         {
-            _genreService.DeleteGenre(genreId);
+            if (_genreService.DeleteGenre(genreId))
+                return Ok();
+            else
+                return NotFound();
+            
         }
 
         [HttpPost("update")]
-        public void Update(int genreId, GenreBlank genreBlank)
+        public IActionResult Update(int genreId, GenreBlank genreBlank)
         {
-            _genreService.UpdateGenre(genreId,genreBlank);
+            if (_genreService.UpdateGenre(genreId,genreBlank))
+                return Ok();
+            else
+                return NotFound();
+            
         }
     }
 }

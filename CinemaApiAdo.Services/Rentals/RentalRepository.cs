@@ -1,5 +1,6 @@
 ﻿using CinemaApiADO.Models.Films.Blank;
 using CinemaApiADO.Models.Films.DB;
+using CinemaApiADO.Models.Films.Domain;
 using CinemaApiADO.Models.Halls.Blank;
 using CinemaApiADO.Models.Halls.DB;
 using CinemaApiADO.Models.Halls.Domain;
@@ -21,12 +22,16 @@ public class RentalRepository: IRentalRepository
     {
         _connection = new NpgsqlConnection(connectionString);
     }
-    public void CreateRental(RentalDB rental)
+    public void CreateRental(RentalDomain rental)
     {
-        RentalDomain newrental = RentalDomain.Convert(rental,GetFilm(rental.Id));
-        FilmDB thisHalltype = FilmDB.Convert(newrental.Films);
+        _connection.Open();
+        //RentalDomain newrental = RentalDomain.Convert(rental,GetFilm(rental.Id));
+        //FilmDB thisHalltype = FilmDB.Convert(newrental.Films);
+        //NpgsqlCommand command = new NpgsqlCommand($"insert into rental(show_start_date, date_of_withdrawal, idfilm)" +
+        //                                          $" values ('{newrental.ShowStartDate}','{newrental.DateOfWithDrawal}','{newrental.Films.Id}')", _connection);
         NpgsqlCommand command = new NpgsqlCommand($"insert into rental(show_start_date, date_of_withdrawal, idfilm)" +
-                                                  $" values ('{newrental.ShowStartDate}','{newrental.DateOfWithDrawal}','{thisHalltype.Id}')", _connection);
+                                                  $" values ('{rental.ShowStartDate}','{rental.DateOfWithDrawal}','{rental.FilmId}')", _connection);
+
         command.ExecuteNonQuery();
         _connection.Close();
     }
@@ -57,14 +62,17 @@ public class RentalRepository: IRentalRepository
         return allrentals;
     }
     
-    public FilmBlank GetFilm(int rentalId)
+    public FilmDomain GetFilm(int rentalId)
     {
         _connection.Open();
         NpgsqlCommand command = new NpgsqlCommand($"select * from film join rental on rental.idfilm = film.id where rental.id = {rentalId}", _connection);
         NpgsqlDataReader reader = command.ExecuteReader();
         FilmBlank film= new FilmBlank();
+        int Idfilm = new int();
         while (reader.Read())
         {
+            //film.Id = Convert.ToInt32(reader["id"]);
+            Idfilm = Convert.ToInt32(reader["id"]);
             film.Name = reader["name"].ToString();
             film.AgeRestriction = reader["age_restriction"].ToString();
             film.Country = reader["country"].ToString();
@@ -76,6 +84,6 @@ public class RentalRepository: IRentalRepository
             film.TrailerLink = reader["trailer_link"].ToString();
         }
         _connection.Close();
-        return film;
+        return FilmDomain.Convert(FilmDB.Convert(Idfilm,film));
     }
 }

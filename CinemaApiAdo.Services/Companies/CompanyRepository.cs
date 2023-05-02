@@ -12,29 +12,54 @@ public class CompanyRepository : ICompanyRepository
     {
         _connection = new NpgsqlConnection(connectionString);
     }
-    public void CreateCompany(CompanyDB companyBlank)
+    public bool CreateCompany(CompanyDB companyBlank)
     {
-        _connection.Open();
-        NpgsqlCommand command =
-            new NpgsqlCommand($"insert into film_company(name) values ('{companyBlank.Name}')", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand($"insert into film_company(name) values ('{companyBlank.Name}')", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateCompany(int companyId, CompanyDB company)
+    public bool UpdateCompany(int companyId, CompanyDB company)
     {
-       _connection.Open();
-       NpgsqlCommand command = new NpgsqlCommand($"update film_company set name = {company.Name} where id = {companyId}", _connection);
-       command.ExecuteNonQuery();
-       _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand($"update film_company set name = {company.Name} where id = {companyId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteCompany(int companyId)
+    public bool DeleteCompany(int companyId)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from film_company where id = {companyId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"delete from film_company where id = {companyId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public CompanyDB GetCompany(int companyId)

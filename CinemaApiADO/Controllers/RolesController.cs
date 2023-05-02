@@ -35,21 +35,32 @@ namespace CinemaApiADO.Controllers
         }
           
         [HttpPost("create")]
-        public void Create([FromBody] RoleBlank roleBlank)
+        public IActionResult Create([FromBody] RoleBlank roleBlank)
         {
-            _service.CreateRole(roleBlank);
+            if (_service.CreateRole(roleBlank))
+                return Ok();
+            else
+                return NotFound();
         }
 
         [HttpPost("remove")]
-        public void Delete(int roleId)
+        public IActionResult Delete(int roleId)
         {
-            _service.DeleteRole(roleId);
+            if (_service.DeleteRole(roleId))
+                return Ok();
+            else
+                return NotFound();
+            
         }
 
         [HttpPost("update")]
-        public void Update(int roleId, RoleBlank roleBlank)
+        public IActionResult Update(int roleId, RoleBlank roleBlank)
         {
-            _service.UpdateRole(roleId,roleBlank);
+            if (_service.UpdateRole(roleId,roleBlank))
+                return Ok();
+            else
+                return NotFound();
+            
         }
     }
 }

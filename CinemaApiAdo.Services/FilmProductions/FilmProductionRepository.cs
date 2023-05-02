@@ -13,29 +13,60 @@ public class FilmProductionRepository:IFilmProductionRepository
     {
         _connection = new NpgsqlConnection(connectionString);
     }
-    public void CreateFilmProduction(FilmProductionDB filmProductionBlank)
+    public bool CreateFilmProduction(FilmProductionDB filmProductionBlank)
     {
-        _connection.Open();
-        NpgsqlCommand command =
-            new NpgsqlCommand($"insert into film_production(name,surname) values ('{filmProductionBlank.Name}','{filmProductionBlank.Surname}')", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand(
+                    $"insert into film_production(name,surname) values ('{filmProductionBlank.Name}','{filmProductionBlank.Surname}')",
+                    _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateFilmProduction(int filmProductionId, FilmProductionDB filmProduction)
+    public bool UpdateFilmProduction(int filmProductionId, FilmProductionDB filmProduction)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"update film_production set name = {filmProduction.Name},surname = {filmProduction.Surname} where id = {filmProductionId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand(
+                    $"update film_production set name = {filmProduction.Name},surname = {filmProduction.Surname} where id = {filmProductionId}",
+                    _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteFilmProduction(int filmProductionId)
+    public bool DeleteFilmProduction(int filmProductionId)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from film_production where id = {filmProductionId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand($"delete from film_production where id = {filmProductionId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public IEnumerable<FilmProductionDB> GetAllFilmProduction()

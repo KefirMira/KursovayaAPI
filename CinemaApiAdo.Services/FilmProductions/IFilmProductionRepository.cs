@@ -4,8 +4,8 @@ namespace CinemaApiAdo.Services.FilmProductions;
 
 public interface IFilmProductionRepository
 {
-    void CreateFilmProduction(FilmProductionDB filmProductionBlank);
-    void UpdateFilmProduction(int filmProductionId,FilmProductionDB filmProduction);
-    void DeleteFilmProduction(int filmProductionId);
+    bool CreateFilmProduction(FilmProductionDB filmProductionBlank);
+    bool UpdateFilmProduction(int filmProductionId,FilmProductionDB filmProduction);
+    bool DeleteFilmProduction(int filmProductionId);
     IEnumerable<FilmProductionDB> GetAllFilmProduction();
 }

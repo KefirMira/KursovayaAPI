@@ -50,15 +50,26 @@ namespace CinemaApiADO.Controllers
         }
 
         [HttpPost("remove")]
-        public void Delete(int clientId)
+        public IActionResult Delete(int clientId)
         {
-            _clientService.DeleteClient(clientId);
+            if (_clientService.DeleteClient(clientId))
+            {
+                return Ok();
+            }
+            else
+                return NotFound();
         }
 
         [HttpPost("update")]
-        public void Update(int clientId, ClientBlank clientBlank)
+        public IActionResult Update(int clientId, ClientBlank clientBlank)
         {
-            _clientService.UpdateClient(clientId,clientBlank);
+            if (_clientService.UpdateClient(clientId,clientBlank))
+            {
+                return Ok();
+            }
+            else
+                return NotFound();
+            
         }
 
         

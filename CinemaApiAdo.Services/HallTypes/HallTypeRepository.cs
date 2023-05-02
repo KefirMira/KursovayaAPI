@@ -31,28 +31,54 @@ public class HallTypeRepository:IHallTypeRepository
         return halltypeDbs;
     }
 
-    public void CreateHallType(HallTypeDB hallTypeDb)
+    public bool CreateHallType(HallTypeDB hallTypeDb)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"insert into hall_type(name) values ('{hallTypeDb.Name}')",
-            _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"insert into hall_type(name) values ('{hallTypeDb.Name}')",
+                _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void UpdateHallType(HallTypeDB hallTypeDb)
+    public bool UpdateHallType(HallTypeDB hallTypeDb)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"update hall_type set name = {hallTypeDb.Name} where id={hallTypeDb.Id}");
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command =
+                new NpgsqlCommand($"update hall_type set name = {hallTypeDb.Name} where id={hallTypeDb.Id}");
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
-    public void DeleteHallType(int hallTypeId)
+    public bool DeleteHallType(int hallTypeId)
     {
-        _connection.Open();
-        NpgsqlCommand command = new NpgsqlCommand($"delete from hall_type where id={hallTypeId}", _connection);
-        command.ExecuteNonQuery();
-        _connection.Close();
+        try
+        {
+            _connection.Open();
+            NpgsqlCommand command = new NpgsqlCommand($"delete from hall_type where id={hallTypeId}", _connection);
+            command.ExecuteNonQuery();
+            _connection.Close();
+            return true;
+        }
+        catch 
+        {
+            return false;
+        }
+        
     }
 }
